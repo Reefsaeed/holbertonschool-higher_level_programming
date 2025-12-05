@@ -55,3 +55,21 @@ TypeError: b must be an integer
 Test with float that needs rounding
 >>> add_integer(1.9, 2.1)
 3
+
+Test with infinity (should raise OverflowError)
+>>> add_integer(float('inf'), 1)
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
+
+Test with negative infinity
+>>> add_integer(float('-inf'), 1)
+Traceback (most recent call last):
+...
+OverflowError: cannot convert float infinity to integer
+
+Test with NaN (should raise ValueError)
+>>> add_integer(float('nan'), 1)
+Traceback (most recent call last):
+...
+ValueError: cannot convert float NaN to integer
