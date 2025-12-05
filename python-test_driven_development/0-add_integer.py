@@ -11,17 +11,17 @@ This includes handling infinity and NaN values.
 def add_integer(a, b=98):
     """
     Add two integers.
-    
+
     Args:
         a: First number (int or float)
         b: Second number (int or float), defaults to 98
-    
+
     Returns:
         int: The sum of a and b as an integer
-    
+
     Raises:
         TypeError: If a or b is not an integer or float
-    
+
     Examples:
         >>> add_integer(1, 2)
         3
