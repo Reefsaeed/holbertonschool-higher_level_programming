@@ -19,42 +19,31 @@ def text_indentation(text):
 
     Returns:
         None: This function only prints the formatted text.
-
-    Examples:
-        >>> text_indentation("Hello. World? Good: Morning")
-        Hello.
-        <BLANKLINE>
-        World?
-        <BLANKLINE>
-        Good:
-        <BLANKLINE>
-        Morning
     """
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    if not text:
+    # Special case: empty string or only whitespace
+    if not text or text.isspace():
         return
 
-    # Remove leading and trailing spaces
-    text = text.strip()
-
     i = 0
-    length = len(text)
+    n = len(text)
 
-    while i < length:
-        # Print current character
-        print(text[i], end="")
-
-        # Check if current character is a separator
-        if text[i] in ".?:":
-            # Print two new lines
-            print("\n")
-
-            # Skip any spaces immediately after the separator
-            i += 1
-            while i < length and text[i] == " ":
-                i += 1
-            continue
-
+    # Skip leading spaces
+    while i < n and text[i] == ' ':
         i += 1
+
+    while i < n:
+        # If we hit a separator
+        if text[i] in ".?:":
+            print(text[i], end="")
+            print("\n")
+            i += 1
+
+            # Skip all whitespace
+            while i < n and text[i] in " \t\n":
+                i += 1
+        else:
+            print(text[i], end="")
+            i += 1
