@@ -27,40 +27,40 @@ def text_indentation(text):
         return
 
     i = 0
-    length = len(text)
-    result = ""
+    n = len(text)
 
     # Skip leading spaces
-    while i < length and text[i] == ' ':
+    while i < n and text[i] == ' ':
         i += 1
 
-    while i < length:
-        result += text[i]
-
+    while i < n:
+        # Check if current char is separator
         if text[i] in ".?:":
-            result += "\n\n"
-            i += 1
+            print(text[i], end="")
 
-            # Skip ALL whitespace characters (space, tab, newline)
-            while i < length and text[i] in " \t\n":
-                i += 1
+            # Check if we have consecutive separators
+            j = i + 1
+            has_consecutive = False
+            while j < n and text[j] in ".?:":
+                has_consecutive = True
+                print(text[j], end="")
+                j += 1
 
-            # If next char is also a separator, add it without new lines
-            # This handles cases like "..."
-            while i < length and text[i] in ".?:":
-                result += text[i]
-                i += 1
+            # Only add new lines if NOT followed by another separator
+            if not has_consecutive:
+                print("\n")
 
-            continue
+                # Skip ALL whitespace (spaces, tabs, newlines)
+                j = i + 1
+                while j < n and text[j] in " \t\n":
+                    j += 1
 
+                i = j
+                continue
+            else:
+                # We already printed all consecutive separators
+                i = j
+                continue
+
+        print(text[i], end="")
         i += 1
-
-    # Remove trailing spaces from each line and print
-    lines = result.split('\n')
-    for i, line in enumerate(lines):
-        if i == len(lines) - 1:
-            # Last line - strip trailing spaces
-            print(line.rstrip(), end="")
-        else:
-            # Not last line - strip trailing spaces and print with newline
-            print(line.rstrip())
