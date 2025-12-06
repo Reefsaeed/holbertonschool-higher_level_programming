@@ -23,27 +23,26 @@ def text_indentation(text):
     if not isinstance(text, str):
         raise TypeError("text must be a string")
 
-    # Special case: empty string or only whitespace
-    if not text or text.isspace():
+    if not text:
         return
 
     i = 0
-    n = len(text)
+    length = len(text)
 
     # Skip leading spaces
-    while i < n and text[i] == ' ':
+    while i < length and text[i] == ' ':
         i += 1
 
-    while i < n:
-        # If we hit a separator
+    while i < length:
+        print(text[i], end="")
+
         if text[i] in ".?:":
-            print(text[i], end="")
             print("\n")
             i += 1
 
-            # Skip all whitespace
-            while i < n and text[i] in " \t\n":
+            # Skip all whitespace after separator
+            while i < length and text[i] == ' ':
                 i += 1
-        else:
-            print(text[i], end="")
-            i += 1
+            continue
+
+        i += 1
