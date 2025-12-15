@@ -1,8 +1,8 @@
 #!/usr/bin/env python3
-"""Defines Shape ABC, concrete Circle/Rectangle, and a duck-typed shape_info()."""
+"""Shapes via ABC and duck typing (area/perimeter + shape_info)."""
 
 from abc import ABC, abstractmethod
-from math import pi
+import math
 
 
 class Shape(ABC):
@@ -11,48 +11,48 @@ class Shape(ABC):
     @abstractmethod
     def area(self):
         """Return the area of the shape."""
-        raise NotImplementedError
+        pass
 
     @abstractmethod
     def perimeter(self):
         """Return the perimeter of the shape."""
-        raise NotImplementedError
+        pass
 
 
 class Circle(Shape):
-    """Circle shape defined by its radius."""
+    """Circle defined by its radius."""
 
     def __init__(self, radius):
-        """Initialize a Circle with a radius."""
+        """Initialize circle radius."""
         self.radius = radius
 
     def area(self):
-        """Return the area of the circle."""
-        return pi * (self.radius ** 2)
+        """Return circle area."""
+        return math.pi * (self.radius ** 2)
 
     def perimeter(self):
-        """Return the perimeter of the circle."""
-        return 2 * pi * self.radius
+        """Return circle perimeter."""
+        return 2 * math.pi * self.radius
 
 
 class Rectangle(Shape):
-    """Rectangle shape defined by width and height."""
+    """Rectangle defined by width and height."""
 
     def __init__(self, width, height):
-        """Initialize a Rectangle with width and height."""
+        """Initialize rectangle dimensions."""
         self.width = width
         self.height = height
 
     def area(self):
-        """Return the area of the rectangle."""
+        """Return rectangle area."""
         return self.width * self.height
 
     def perimeter(self):
-        """Return the perimeter of the rectangle."""
+        """Return rectangle perimeter."""
         return 2 * (self.width + self.height)
 
 
 def shape_info(shape):
-    """Print the area and perimeter of a shape using duck typing."""
+    """Print area and perimeter using duck typing (no isinstance checks)."""
     print("Area: {}".format(shape.area()))
     print("Perimeter: {}".format(shape.perimeter()))
