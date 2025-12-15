@@ -6,6 +6,7 @@ import math
 
 class Shape(ABC):
     """Abstract base class for shapes."""
+
     @abstractmethod
     def area(self):
         """Return the area of the shape."""
@@ -19,6 +20,7 @@ class Shape(ABC):
 
 class Circle(Shape):
     """Circle class implementing Shape's interface."""
+
     def __init__(self, radius):
         """Initialize circle with radius."""
         self.radius = radius
@@ -34,6 +36,7 @@ class Circle(Shape):
 
 class Rectangle(Shape):
     """Rectangle class implementing Shape's interface."""
+
     def __init__(self, width, height):
         """Initialize rectangle with width and height."""
         self.width = width
