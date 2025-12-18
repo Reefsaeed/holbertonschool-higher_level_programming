@@ -11,12 +11,10 @@ class Shape(ABC):
     @abstractmethod
     def area(self):
         """Return the area."""
-        pass
 
     @abstractmethod
     def perimeter(self):
         """Return the perimeter."""
-        pass
 
 
 class Circle(Shape):
@@ -48,5 +46,5 @@ class Rectangle(Shape):
 
 def shape_info(shape):
     """Print shape info using duck typing."""
-    print("Area: {}".format(shape.area()))
-    print("Perimeter: {}".format(shape.perimeter()))
+    print(f"Area: {shape.area()}")
+    print(f"Perimeter: {shape.perimeter()}")
