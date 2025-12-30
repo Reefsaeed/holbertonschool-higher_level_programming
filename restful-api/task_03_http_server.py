@@ -22,7 +22,7 @@ class SimpleAPIHandler(BaseHTTPRequestHandler):
         """Send a JSON response."""
         body = json.dumps(payload)
         self.send_response(status_code)
-        self.send_header("Content-Type", "application/json; charset=utf-8")
+        self.send_header("Content-Type", "application/json")
         self.end_headers()
         self.wfile.write(body.encode("utf-8"))
 
